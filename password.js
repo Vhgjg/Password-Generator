@@ -5,7 +5,7 @@ const lowercaseEl = document.getElementById('lowercase');
 const numbersEl = document.getElementById('numbers');
 const symbolsEl = document.getElementById('symbols');
 const generateBtn = document.getElementById('generate');
-const copyBtn = document.getElementById('copy');
+const copyBtn = document.getElementById('copy');const resetBtn = document.getElementById('reset');
 
 generateBtn.addEventListener('click', () => {
 let characters = "";
@@ -29,16 +29,28 @@ for(let i = 0; i < length; i++) {
 resultEl.value = password;
 
 });
-copytoClipboard = () => {
+// Perbaiki deklarasi fungsi
+const copytoClipboard = () => {
     resultEl.select();
     document.execCommand('copy');
-     alert('Password copied to clipboard!');
+    alert('Password copied to clipboard!');
 };
-copyBtn.Btn.addeventListener("click", () =>{
+
+// Perbaiki event listener tombol copy
+copyBtn.addEventListener("click", () => {
     if (resultEl.value) {
         copytoClipboard();
     } else {
         alert('please generate password first!');
     }
-}
-)
+});
+
+// Perbaiki event listener tombol reset
+resetBtn.addEventListener('click', () => {
+    resultEl.value = '';
+    lengthEl.value = 12; 
+    uppercaseEl.checked = false;
+    lowercaseEl.checked = false;    
+    numbersEl.checked = false;
+    symbolsEl.checked = false;
+});
